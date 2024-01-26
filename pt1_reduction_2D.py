@@ -13,11 +13,11 @@ import matplotlib.markers
 ##          Function definitions
 ##
 
-@jit(nopython=True)
 def extract_grade(data):
     grade = []
-    for row in data:
-        grade.append(row[0])
+    for i in range(len(data)):
+        grade.append(data[i][0])
+    data = np.delete(data, 0, 1)
     return grade, data
 
 ##
@@ -51,6 +51,7 @@ plt.title('Scree Plot')
 plt.xlabel('Principal Component')
 plt.ylabel('Variance Explained')
 plt.show()
+plt.savefig("significance")
 
 print("Preparing graph plot")
 
@@ -87,6 +88,5 @@ for anot in annotations:
     plt.text(2800, -200 - i*200, f'{anot} - ', fontsize=8, ha='right', va='bottom', color=clrs[i])
     i+=1
 
-
-plt.show()
-
+#plt.show()
+plt.savefig('dim_red_2d')
